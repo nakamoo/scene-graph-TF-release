@@ -5,6 +5,8 @@
 # --------------------------------------------------------
 
 from fast_rcnn.config import cfg
+import matplotlib
+# matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 from graphviz import Digraph
@@ -60,6 +62,7 @@ def draw_graph(labels, rels, cfg):
         u.edge(str(rel[0]), edge_key)
         u.edge(edge_key, str(rel[1]))
 
+    print(u)
     u.view()
 
     return out_dict
@@ -69,7 +72,7 @@ def viz_scene_graph(im, rois, labels, inds=None, rels=None, preprocess=True):
     """
     visualize a scene graph on an image
     """
-    if inds == None:
+    if inds.all() == None:
         inds = np.arange(rois.shape[0])
     viz_rois = rois[inds]
     viz_labels = labels[inds]
@@ -131,4 +134,5 @@ def _viz_scene_graph(im, rois, labels, rels=None, preprocess=True):
     ax.set_title('Scene Graph Visualization', fontsize=14)
     ax.axis('off')
     fig.tight_layout()
-    plt.show()
+    plt.savefig( 'scene-graph.png' )
+    # plt.show()

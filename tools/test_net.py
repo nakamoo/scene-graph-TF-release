@@ -77,7 +77,6 @@ if __name__ == '__main__':
         print('Waiting for {} to exist...'.format(args.model))
         time.sleep(10)
 
-
     device_name = '/gpu:{:d}'.format(args.gpu_id)
     print device_name
 
